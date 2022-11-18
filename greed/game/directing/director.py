@@ -1,3 +1,6 @@
+import random
+from game.shared.point import Point
+
 class Director:
     """A person who directs the game. 
     
@@ -42,24 +45,38 @@ class Director:
         robot.set_velocity(velocity)        
 
     def _do_updates(self, cast):
-        """Updates the robot's position and resolves any collisions with artifacts.
+        """Updates the robot's position and resolves any collisions with minerals.
         
         Args:
             cast (Cast): The cast of actors.
         """
         banner = cast.get_first_actor("banners")
+        scoreboard = cast.get_first_actor("scoreboards")
         robot = cast.get_first_actor("robots")
-        artifacts = cast.get_actors("artifacts")
+        minerals = cast.get_actors("minerals")
 
         banner.set_text("")
+        scoreboard.set_text(f"{scoreboard.get_points()}")
+        scoreboard.get_text()
         max_x = self._video_service.get_width()
         max_y = self._video_service.get_height()
         robot.move_next(max_x, max_y)
-        
-        for artifact in artifacts:
-            if robot.get_position().equals(artifact.get_position()):
-                message = artifact.get_message()
-                banner.set_text(message)    
+
+        for mineral in minerals:
+
+            if robot.get_position().equals(mineral.get_position()):
+                scoreboard.add_points(mineral.get_value())
+                mineral.downgrade()
+
+            position = mineral.get_position()
+            if position.get_y() == 595:
+                x = random.randint(1, 59) * 15
+                y = 0
+                new_position = Point(x, y)
+                mineral.rand_properties()
+                mineral.set_position(new_position)
+
+            mineral.move_next(max_x, max_y)
         
     def _do_outputs(self, cast):
         """Draws the actors on the screen.
