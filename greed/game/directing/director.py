@@ -64,19 +64,19 @@ class Director:
 
         for mineral in minerals:
 
-            if robot.get_position().equals(mineral.get_position()):
-                scoreboard.add_points(mineral.get_value())
-                mineral.downgrade()
-
+            # Move and randomize mineral when it gets to bottom of screen.
+            contact = (robot.get_position().equals(mineral.get_position()))
             position = mineral.get_position()
-            if position.get_y() == 595:
-                x = random.randint(1, 59) * 15
-                y = 0
-                new_position = Point(x, y)
-                mineral.rand_properties()
-                mineral.set_position(new_position)
+            at_bottom = (position.get_y() == 595)
 
             mineral.move_next(max_x, max_y)
+            
+            if contact:
+                scoreboard.add_points(mineral.get_value())
+
+            if at_bottom or contact:
+                mineral.rand_properties()
+
         
     def _do_outputs(self, cast):
         """Draws the actors on the screen.

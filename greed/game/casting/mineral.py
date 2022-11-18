@@ -1,6 +1,8 @@
 import random
-from game.shared.color import Color
+
 from game.casting.actor import Actor
+from game.shared.color import Color
+from game.shared.point import Point
 
 class Mineral(Actor):
     """An mineral is either a gem or rock that falls from the top of the
@@ -32,23 +34,27 @@ class Mineral(Actor):
         Args:
             self (Mineral): an instance of Mineral
         """
-        types = ["gem", "rock", "rock", "rock", "rock", "rock", "rock", "rock", "rock", "rock"]
-        self._mineral_type = random.choice(types)
 
-        if self._mineral_type == "gem":
+        # Change mineral type.
+        type = random.randint(1, 10)
+
+        if type == 1:
+            self._mineral_type = "gem"
             self._text = "#"
             self._value = 1
-        elif self._mineral_type == "rock":
+
+        elif type != 1:
+            self._mineral_type = "rock"
             self._text = "O"
-            self._value = -2
+            self._value = -1
+
+        # Change color.
         r = random.randint(0, 255)
         g = random.randint(0, 255)
         b = random.randint(0, 255)
         self._color = Color(r, g, b)
 
-    def get_collectability(self):
-        return self._collected
-        
-    def downgrade(self):
-        self._value = -1
-        self._text = "O"
+        x = random.randint(1, 59) * 15
+        y = 0
+        new_position = Point(x, y)
+        self._position = new_position

@@ -62,7 +62,7 @@ def main():
 
     for n in range(DEFAULT_MINERALS):
 
-        mineral_velocity = Point(0, 3)
+        mineral_velocity = Point(0, 5)
         
         x = random.randint(1, COLS - 1)
         y = random.randint(1, ROWS - 1)
