@@ -40,7 +40,7 @@ class Mineral(Actor):
 
         if type == 1:
             self._mineral_type = "gem"
-            self._text = "#"
+            self._text = "*"
             self._value = 1
 
         elif type != 1:
