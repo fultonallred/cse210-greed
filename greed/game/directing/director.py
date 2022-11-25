@@ -1,6 +1,3 @@
-import random
-from game.shared.point import Point
-
 class Director:
     """A person who directs the game. 
     
@@ -56,7 +53,7 @@ class Director:
         minerals = cast.get_actors("minerals")
 
         banner.set_text("")
-        scoreboard.set_text(f"{scoreboard.get_points()}")
+        scoreboard.set_text(f"Score: {scoreboard.get_points()}")
         scoreboard.get_text()
         max_x = self._video_service.get_width()
         max_y = self._video_service.get_height()
