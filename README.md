@@ -5,23 +5,17 @@ Collect gems as the fall from the sky. Watch out for other rocks though!
 ---
 Make sure you have Python 3.10.0 or newer and Raylib Python CFFI 3.7 installed and running on your machine. You can install Raylib Python CFFI by opening a terminal and running the following command.
 ```
-<<<<<<< HEAD
 python3 -m pip install raylib or py -m pip install raylib
 ```
 After you've installed the required libraries, open a terminal and browse to the project's root folder. Start the program by running the following command.```
 
 python3 greed or py greed
-=======
-python3 -m pip install raylib
-or
-py -m pip install raylib
 ```
 After you've installed the required libraries, open a terminal and browse to the project's root folder. Start the program by running the following command.```
 
 python3 greed
 or
 py greed
->>>>>>> 22d28012576ff5aee4250378dfec0197900ab250
 ```
 You can also run the program from an IDE like Visual Studio Code. Start your IDE and open the 
 project folder. Select the main module inside the hunter folder and click the "run" icon.
